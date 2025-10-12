@@ -1,6 +1,6 @@
 services:
   api-gateway:
-    build: ../backend/src/ApiGateway  # Build từ folder ApiGateway (Dockerfile copy nginx.conf)
+    build: ../src/ApiGateway  # Build từ folder ApiGateway (Dockerfile copy nginx.conf)
     ports:
       - "5000:80"  # Expose port 5000 local -> 80 container
     depends_on:
@@ -13,7 +13,7 @@ services:
 
   user-service:
     build: 
-      context: ../backend/src
+      context: ../src
       dockerfile: UserService/Dockerfile
     ports:
       - "5001:80"
@@ -36,7 +36,7 @@ services:
 
   problem-service:
     build: 
-      context: ../backend/src
+      context: ../src
       dockerfile: ProblemService/Dockerfile
     ports:
       - "5002:80"
@@ -59,7 +59,7 @@ services:
 
   submission-service:
     build: 
-      context: ../backend/src
+      context: ../src
       dockerfile: SubmissionService/Dockerfile
     ports:
       - "5003:80"
@@ -84,7 +84,7 @@ services:
 
   execution-service:
     build: 
-      context: ../backend/src
+      context: ../src
       dockerfile: ExecutionService/Dockerfile
     ports:
       - "5004:80"
@@ -109,7 +109,7 @@ services:
 
   contest-service:
     build: 
-      context: ../backend/src
+      context: ../src
       dockerfile: ContestService/Dockerfile
     ports:
       - "5005:80"
