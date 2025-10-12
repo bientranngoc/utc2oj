@@ -1,0 +1,147 @@
+services:
+  api-gateway:
+    build: ../backend/src/ApiGateway  # Build từ folder ApiGateway (Dockerfile copy nginx.conf)
+    ports:
+      - "5000:80"  # Expose port 5000 local -> 80 container
+    depends_on:
+      - user-service
+      - problem-service
+      - submission-service
+      - execution-service
+      - contest-service
+      - rabbitmq
+
+  user-service:
+    build: 
+      context: ../backend/src
+      dockerfile: UserService/Dockerfile
+    ports:
+      - "5001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__UserDb=Host=user-db;Database=userdb;Username=postgres;Password=yourpass
+    depends_on:
+      - user-db
+
+  user-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: userdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yourpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - user-db-data:/var/lib/postgresql/data
+
+  problem-service:
+    build: 
+      context: ../backend/src
+      dockerfile: ProblemService/Dockerfile
+    ports:
+      - "5002:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__ProblemDb=Host=problem-db;Database=problemdb;Username=postgres;Password=yourpass
+    depends_on:
+      - problem-db
+
+  problem-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: problemdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yourpass
+    ports:
+      - "5433:5432"
+    volumes:
+      - problem-db-data:/var/lib/postgresql/data
+
+  submission-service:
+    build: 
+      context: ../backend/src
+      dockerfile: SubmissionService/Dockerfile
+    ports:
+      - "5003:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__SubmissionDb=Host=submission-db;Database=submissiondb;Username=postgres;Password=yourpass
+      - RabbitMQ__Host=rabbitmq
+    depends_on:
+      - submission-db
+      - rabbitmq
+
+  submission-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: submissiondb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yourpass
+    ports:
+      - "5434:5432"
+    volumes:
+      - submission-db-data:/var/lib/postgresql/data
+
+  execution-service:
+    build: 
+      context: ../backend/src
+      dockerfile: ExecutionService/Dockerfile
+    ports:
+      - "5004:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__ExecutionDb=Host=execution-db;Database=executiondb;Username=postgres;Password=yourpass
+      - RabbitMQ__Host=rabbitmq
+    depends_on:
+      - execution-db
+      - rabbitmq
+
+  execution-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: executiondb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yourpass
+    ports:
+      - "5435:5432"
+    volumes:
+      - execution-db-data:/var/lib/postgresql/data
+
+  contest-service:
+    build: 
+      context: ../backend/src
+      dockerfile: ContestService/Dockerfile
+    ports:
+      - "5005:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__ContestDb=Host=contest-db;Database=contestdb;Username=postgres;Password=yourpass
+    depends_on:
+      - contest-db
+
+  contest-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: contestdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yourpass
+    ports:
+      - "5436:5432"
+    volumes:
+      - contest-db-data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"  # AMQP port
+      - "15672:15672"  # Management UI (user: guest, pass: guest)
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+
+volumes:
+  user-db-data:
+  problem-db-data:
+  submission-db-data:
+  execution-db-data:
+  contest-db-data:
+  rabbitmq-data:
