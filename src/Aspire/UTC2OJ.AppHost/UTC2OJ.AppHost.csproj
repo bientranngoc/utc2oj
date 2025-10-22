@@ -9,5 +9,15 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.1" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.5.1" />
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="9.5.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\UserService\UserService.csproj" />
+    <ProjectReference Include="..\..\src\ProblemService\ProblemService.csproj" />
+    <ProjectReference Include="..\..\src\SubmissionService\SubmissionService.csproj" />
+    <ProjectReference Include="..\..\src\ExecutionService\ExecutionService.csproj" />
+    <ProjectReference Include="..\..\src\ContestService\ContestService.csproj" />
+    <ProjectReference Include="..\..\src\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>
