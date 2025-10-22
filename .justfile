@@ -17,13 +17,13 @@ install-dev-cert:  # Install dev cert (Bash)
 upgrade-packages:  # Upgrade .NET packages
     dotnet outdated -u
 
-check-format PROJECT_PATH=".":  # Check C# formatting
+check-format PROJECT_PATH="utc2oj.sln":  # Check C# formatting
     dotnet csharpier check {{PROJECT_PATH}}
 
-check-style PROJECT_PATH=".":  # Check C# style rules
+check-style PROJECT_PATH="utc2oj.sln":  # Check C# style rules
    dotnet format style {{PROJECT_PATH}} --verify-no-changes --severity error --verbosity diagnostic
 
-check-analyzers PROJECT_PATH=".":  # Check C# analyzer rules
+check-analyzers PROJECT_PATH="utc2oj.sln":  # Check C# analyzer rules
    dotnet format analyzers {{PROJECT_PATH}} --verify-no-changes --severity error --verbosity diagnostic
 
 fix-format PROJECT_PATH=".":  # Fix formatting and stage changes

@@ -5,17 +5,17 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0F9113EE-888A-26D2-68B0-4A7D0A2A8745}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "src\Shared\Shared.csproj", "{02FD8513-BD62-4EAA-9909-892E37622684}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTC2OJ.Services.Shared", "src\Services\Shared\UTC2OJ.Services.Shared.csproj", "{02FD8513-BD62-4EAA-9909-892E37622684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService", "src\UserService\UserService.csproj", "{465FB689-C30C-4233-B2F2-FA424B171483}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService", "src\Services\Users\UserService.csproj", "{465FB689-C30C-4233-B2F2-FA424B171483}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProblemService", "src\ProblemService\ProblemService.csproj", "{6023EB5E-FFD6-4261-A756-0648680754B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProblemService", "src\Services\Problems\ProblemService.csproj", "{6023EB5E-FFD6-4261-A756-0648680754B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubmissionService", "src\SubmissionService\SubmissionService.csproj", "{07220ABC-8087-4E28-B560-3A18019A9CB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubmissionService", "src\Services\Submissions\SubmissionService.csproj", "{07220ABC-8087-4E28-B560-3A18019A9CB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExecutionService", "src\ExecutionService\ExecutionService.csproj", "{94DD3E7A-33BC-401F-9432-F1F44AEE56FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExecutionService", "src\Services\Executions\ExecutionService.csproj", "{94DD3E7A-33BC-401F-9432-F1F44AEE56FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContestService", "src\ContestService\ContestService.csproj", "{3551B7D4-1965-40BD-8C75-D0787706EE78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContestService", "src\Services\Contests\ContestService.csproj", "{3551B7D4-1965-40BD-8C75-D0787706EE78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
